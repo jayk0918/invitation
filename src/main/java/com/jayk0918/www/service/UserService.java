@@ -1,5 +1,7 @@
 package com.jayk0918.www.service;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
 import com.jayk0918.www.config.AdminConfig;
@@ -43,19 +45,18 @@ public class UserService {
 	
 	public Users joinUser(Long userId, Users user) {
 		
-		Users entity = userRepository.findByUserId(userId);
+		Optional<Users> entity = userRepository.findById(userId);
+		Users userFoundById = entity.get();
 		
-		entity = Users.builder()
+		userFoundById = Users.builder()
 				.name(user.getName())
 				.phoneNumber(user.getPhoneNumber())
 				.emailAddress(user.getEmailAddress())
 				.build();
 		
-		entity = userRepository.save(entity);
-		
+		userFoundById = userRepository.save(userFoundById);
 		linkService.updateUsage(userId);
-		
-		return entity;
+		return userFoundById;
 		
 	}
 	

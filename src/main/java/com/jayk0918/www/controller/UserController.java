@@ -14,13 +14,15 @@ import org.springframework.web.servlet.ModelAndView;
 import com.jayk0918.www.entity.Users;
 import com.jayk0918.www.service.UserService;
 
-import lombok.AllArgsConstructor;
-
 @RestController
-@AllArgsConstructor
 public class UserController {
 	
 	private final UserService userService;
+	
+	public UserController(UserService userService) {
+		this.userService = userService;
+	}
+	
 	
 	@PostMapping("/admin/post")
 	public Users createAdmin(Users user) {
@@ -62,5 +64,5 @@ public class UserController {
 		session.invalidate();
 		return mv;
 	}
-	
+
 }
