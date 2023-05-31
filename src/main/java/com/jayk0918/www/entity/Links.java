@@ -40,4 +40,14 @@ public class Links {
 		this.usage = usage;
 	}
 	
+	
+	@Builder
+	public Links(
+			Long userId,
+			boolean usage
+			) {
+		this.userId = userId;
+		this.usage = usage;
+	}
+	
 }

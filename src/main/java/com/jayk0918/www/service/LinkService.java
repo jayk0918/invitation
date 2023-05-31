@@ -15,7 +15,6 @@ public class LinkService {
 	
 	private final LinkRepository linkRepository;
 	
-	
 	public Links createLink(Long userId) {
 		
 		String randomUrl = UUID.randomUUID().toString();
@@ -31,6 +30,18 @@ public class LinkService {
 	public Long getUserIdByUrl(String url) {
 		return linkRepository.getUserIdByUrl(url);
 	}
+	
+	public Links updateUsage(Long userId) {
+		
+		Links link = Links.builder()
+				.userId(userId)
+				.usage(true)
+				.build();
+		
+		return linkRepository.save(link);
+	}
+	
+	
 	
 	
 	
