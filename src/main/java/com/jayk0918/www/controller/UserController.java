@@ -52,7 +52,14 @@ public class UserController {
 		ModelAndView mv = new ModelAndView("/main");
 		Users joinUser = userService.joinUser(userId, user);
 		session.setAttribute("userId", joinUser.getId());
-		
+		return mv;
+	}
+	
+	@PostMapping("/logout")
+	public ModelAndView logout(HttpSession session) {
+		ModelAndView mv = new ModelAndView("/");
+		session.removeAttribute("userId");
+		session.invalidate();
 		return mv;
 	}
 	
